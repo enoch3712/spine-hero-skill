@@ -2,15 +2,63 @@
 
 An agent skill for animating a 2D game hero from one painting, for Claude Code, Codex and Cursor. The painting is cut into parts on a Spine skeleton. A strong coding model writes each move as code on that rig, a script measures every capture, and a second, independent model checks close-ups against a list of every defect a human ever caught. A reference video of the hero gives timing only, an image model paints what the painting never showed (hidden parts, swappable gear, and key drawings for fast blows), and the human's eye decides.
 
-**[Watch the 45-second explainer](docs/explainer.mp4)** (old sprite frames, the cut painting on its skeleton, the pipeline step by step, the results and the gear swaps).
+**[Watch the 45-second explainer](docs/explainer.mp4)**, or read it step by step below. The model named at each step is the one the original project used, as an example.
 
-[![The seven steps: plan and brief, reference video, paint missing pieces, write each move, gate, check close-ups, final say](docs/pipeline.png)](docs/explainer.mp4)
+## How it works
 
-*The pipeline at a glance, with the model each step mainly used in the original project. Step 3 is lit: the image model paints missing parts, new gear, and key poses for fast blows. [SKILL.md](skills/spine-hero/SKILL.md) has the full loop, including the review and the orchestrator's own look, which the picture folds away.*
+### Before: every frame painted
 
-![The same taunt made two ways, on two designs of the hero: left, an earlier design from 44 generated-video frames; right, the current design, its own painted parts moved by code](docs/before-after.png)
+![Before: a walk played from separate frames beside a wall of 403 frames, with the caption "Change the hammer? Redo all 10 clips."](docs/steps/01-before.gif)
 
-*The same taunt made two ways, on two designs of the hero. Left: an earlier design, 44 frames from a generated video. Right: the current design, its own painted parts moved by code on the rig.*
+The earlier design of the hero was a flipbook: 10 clips, 403 frames cut from generated videos, with the weapon, shield and armour in every frame. A new weapon meant redoing every clip.
+
+### After: one painting, cut into parts, on a skeleton
+
+![The painting, its parts pulling apart, then the skeleton drawn over it](docs/steps/02-one-painting.gif)
+
+Every clip is then written as code on that rig, never as frames.
+
+### The pipeline
+
+**1. Plan and brief.** The orchestrator writes one brief per move and starts one run per move, so moves are built in parallel.
+
+![Step 1 lit: six moves playing at once under the orchestrator](docs/steps/03-moves-in-parallel.gif)
+
+**2. Reference video.** An image-to-video model animates the hero's own painting. It gives timing and beats only; it is never traced or used as frames.
+
+![Step 2 lit: the reference clip of a shield bash](docs/steps/04-reference-video.gif)
+
+**3. Paint missing pieces.** An image model paints what the painting never showed (a far arm), new gear (an axe, a mace, a tower shield), and key poses for fast blows.
+
+![Step 3 lit: a far arm, an axe, a mace, a tower shield and a key pose](docs/steps/05-paint-missing-pieces.gif)
+
+**4. Write each move.** A strong coding model writes the move as keys and IK on the rig, builds it, captures it and looks at its own result.
+
+![Step 4 lit: the shield raised overhead and lowered](docs/steps/06-write-each-move.gif)
+
+**5. Gate.** A script measures the capture: sliding feet, ground speed, cracks, a move that does not end back at rest, anything drawn outside the hero's box. No model judges the numbers.
+
+![Step 5 lit: the walk, with the caption "Sliding feet fail the gate"](docs/steps/07-gate.gif)
+
+**6. Check close-ups.** An independent model goes through a list of every defect a human ever caught, on 2x close-ups of the feet and the head.
+
+![Step 6 lit: head close-ups checked frame by frame against 13 past defects](docs/steps/08-check-close-ups.gif)
+
+**7. Final say.** A human decides. Each flaw they catch becomes a new line in the defect list or a new gate check.
+
+![Step 7 lit: a slam into the floor, with an arrow from the final say back into the gate and the check](docs/steps/09-final-say.gif)
+
+### What comes out
+
+![Six moves playing in a grid: shield bash, shield wall, shield overhead, taunt, seismic slam, leap and bash](docs/steps/10-six-moves.gif)
+
+Six moves on one skeleton. Below, the same taunt made the old way and the new way, on two designs of the hero.
+
+![The same taunt twice: left, 44 frames from a generated video; right, painted parts moved by code](docs/steps/11-old-and-new.gif)
+
+Because the gear rides its own bones, a weapon or a shield can be swapped and every move still plays.
+
+![A leap with a hammer, an axe and a mace side by side, then a shield overhead with two different shields](docs/steps/12-gear-swaps.gif)
 
 ## What is in the repo
 
@@ -36,7 +84,7 @@ skills/spine-hero/                the skill: the only copy of the content
 plugin.json, .agents/plugins/     Codex plugin manifest and repo marketplace (point at skills/)
 .cursor-plugin/                   Cursor plugin and marketplace manifests (point at skills/)
 AGENTS.md                         a pointer to the skill for any agent working in this repo
-docs/                             the explainer video and the two pictures above
+docs/                             the explainer video and the step GIFs above
 ```
 
 ## What you must bring
