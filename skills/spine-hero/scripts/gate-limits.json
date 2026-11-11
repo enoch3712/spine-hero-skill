@@ -1,0 +1,56 @@
+{
+  "_doc": "Example limits for gate.mjs. kinds.<idle|walk|run|move>.<checkId> is {max}, {min}, {min,max} or {equals}; a check with no limit here is not run. heroes.<id>.<kind>.<checkId> overrides one check for one hero (null switches it off); <id> is the metrics' 'char'. These values were calibrated on one game's accepted captures at 1600x900, 30 fps, about 0.55 screen px per skeleton unit, unlit: every px limit is in those screen pixels, so recalibrate on clips you have accepted by eye at your own capture size before trusting them. references/gate.md explains each check, which limits carry over, and how to set them for a first hero.",
+  "kinds": {
+    "idle": {
+      "errors": { "equals": 0 },
+      "seamMeanAbsDiff": { "max": 0.5 },
+      "soleDriftPx": { "max": 1 },
+      "chestBobPx": { "min": 0.8, "max": 3 },
+      "headAngleRangeDeg": { "max": 8 },
+      "framePopMeanAbsDiff": { "max": 6 },
+      "framePopRatio": { "max": 3.2 },
+      "holeMaxAreaPx": { "max": 12 },
+      "boxOverflowUnits": { "max": 0 }
+    },
+    "walk": {
+      "errors": { "equals": 0 },
+      "slidePxMax": { "max": 2 },
+      "groundSpeedRatio": { "min": 0.95, "max": 1.05 },
+      "stanceSymmetry": { "min": 0.7, "max": 1.43 },
+      "footfallsPerLoopMin": { "min": 1 },
+      "chestBobPx": { "min": 2, "max": 8 },
+      "holeMaxAreaPx": { "max": 12 },
+      "boxOverflowUnits": { "max": 0 }
+    },
+    "run": {
+      "errors": { "equals": 0 },
+      "slidePxMax": { "max": 2 },
+      "groundSpeedRatio": { "min": 0.95, "max": 1.05 },
+      "stanceSymmetry": { "min": 0.7, "max": 1.43 },
+      "footfallsPerLoopMin": { "min": 1 },
+      "chestBobPx": { "min": 4, "max": 14 },
+      "holeMaxAreaPx": { "max": 12 },
+      "boxOverflowUnits": { "max": 0 }
+    },
+    "move": {
+      "errors": { "equals": 0 },
+      "seamMeanAbsDiff": { "max": 0.5 },
+      "holeMaxAreaPx": { "max": 12 },
+      "boxOverflowUnits": { "max": 0 }
+    }
+  },
+  "heroes": {
+    "example-tank": {
+      "_note": "An example of per-hero baselines, from a shield-and-hammer tank hero. Hole limits are the silhouette's own painted gaps, each named: idle 310 (the gap between the hammer arm and the coat); walk 460 (that gap opened by the march, plus the pocket between the far shin and the shield); run 250 (the arm-coat gap opened by the arm's pump); move 3100 (one real opening of one move, under the far forearm between the coat, the shield's inner edge and the far leg stepping in). A crack is never a reason to raise a limit.",
+      "idle": { "holeMaxAreaPx": { "max": 310 } },
+      "walk": { "holeMaxAreaPx": { "max": 460 } },
+      "run": { "holeMaxAreaPx": { "max": 250 } },
+      "move": { "holeMaxAreaPx": { "max": 3100 } }
+    },
+    "example-rifle": {
+      "_note": "An example of a loosened and a switched-off check. Walk slide 4: the step-drag walk the human picked by eye moves the sole bone about 3.4 px while planted. Move box check off: several old clips draw past the box and nobody has judged them yet; judge them, then fix the box or the clip and drop this.",
+      "walk": { "slidePxMax": { "max": 4 } },
+      "move": { "boxOverflowUnits": null }
+    }
+  }
+}

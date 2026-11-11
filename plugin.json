@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "spine-hero",
+  "version": "0.1.0",
+  "description": "Animate a 2D game hero from one painting on a Spine-style skeleton: parts cut from the painting, moves written as code by a strong model, a scripted gate, an independent defect check, a reference video for timing, an image model for hidden parts and gear, and the human eye as the final judge.",
+  "keywords": [
+    "animation",
+    "2d",
+    "spine",
+    "skeletal",
+    "game-art",
+    "agent-skills"
+  ]
+}

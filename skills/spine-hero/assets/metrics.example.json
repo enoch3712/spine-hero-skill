@@ -1,0 +1,91 @@
+{
+ "_doc": "An example metrics.json for a walk capture, to show the contract in references/gate.md. Made up for the example: not a real capture.",
+ "char": "example-hero",
+ "clip": "walk",
+ "torch": "off",
+ "viewport": [
+  1600,
+  900
+ ],
+ "fps": 30,
+ "errors": [],
+ "loop": {
+  "clipSeconds": 4.125,
+  "seconds": 6.4,
+  "frames": 192
+ },
+ "figureHeightPx": {
+  "first": 325,
+  "min": 321,
+  "max": 329
+ },
+ "soles": {
+  "Foot_Front": {
+   "maxDriftPx": 210.4
+  },
+  "Foot_Back": {
+   "maxDriftPx": 205.9
+  }
+ },
+ "chestBobPx": 4.1,
+ "headAngleRangeDeg": 3.2,
+ "seam": {
+  "meanAbsDiff": 0.31,
+  "pctOver24": 0.4
+ },
+ "frameToFrame": {
+  "maxMeanAbsDiff": 3.9,
+  "meanMeanAbsDiff": 2.6,
+  "maxPctOver24": 6.1
+ },
+ "holes": {
+  "maxAreaPx": 7,
+  "maxThinAreaPx": 2,
+  "framesOver6Px": 3,
+  "worstFrame": 41
+ },
+ "locomotion": {
+  "window": {
+   "fromSeconds": 0.3,
+   "seconds": 6.0,
+   "loopSeconds": 2.0,
+   "loops": 3
+  },
+  "slidePx": {
+   "max": 1.4,
+   "mean": 0.7
+  },
+  "groundSpeed": {
+   "measuredPxPerS": 120.8,
+   "expectedPxPerS": 121.0,
+   "ratio": 0.9983
+  },
+  "stanceSymmetry": 1.04,
+  "footfallsPerLoop": {
+   "Foot_Front": 1,
+   "Foot_Back": 1
+  },
+  "chestBobPx": 4.1
+ },
+ "pictureBox": {
+  "box": {
+   "left": -320,
+   "right": 360,
+   "top": 1000,
+   "bottom": -40
+  },
+  "drawn": {
+   "left": -298.5,
+   "right": 341.2,
+   "top": 962.0,
+   "bottom": -6.3
+  },
+  "overflowUnits": 0,
+  "side": null,
+  "frame": null
+ },
+ "scale": {
+  "worldScale": 0.55,
+  "pxPerSkeletonUnit": 0.36
+ }
+}

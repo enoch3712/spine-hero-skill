@@ -1,0 +1,16 @@
+{
+  "name": "spine-hero-skill",
+  "owner": {
+    "name": "spine-hero-skill"
+  },
+  "metadata": {
+    "description": "One agent skill: animate a 2D game hero from one painting."
+  },
+  "plugins": [
+    {
+      "name": "spine-hero",
+      "source": "./",
+      "description": "Animate a 2D game hero from one painting on a Spine-style skeleton: parts cut from the painting, moves written as code by a strong model, a scripted gate, an independent defect check, a reference video for timing, an image model for hidden parts and gear, and the human eye as the final judge."
+    }
+  ]
+}
