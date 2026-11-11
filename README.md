@@ -2,7 +2,9 @@
 
 An agent skill for animating a 2D game hero from one painting, for Claude Code, Codex and Cursor. The painting is cut into parts on a Spine skeleton. A strong coding model writes each move as code on that rig, a script measures every capture, and a second, independent model checks close-ups against a list of every defect a human ever caught. A reference video of the hero gives timing only, an image model paints what the painting never showed (hidden parts, swappable gear, and key drawings for fast blows), and the human's eye decides.
 
-![The seven steps: plan and brief, reference video, paint missing pieces, write each move, gate, check close-ups, final say](docs/pipeline.png)
+**[Watch the 45-second explainer](docs/explainer.mp4)** (old sprite frames, the cut painting on its skeleton, the pipeline step by step, the results and the gear swaps).
+
+[![The seven steps: plan and brief, reference video, paint missing pieces, write each move, gate, check close-ups, final say](docs/pipeline.png)](docs/explainer.mp4)
 
 *The pipeline at a glance, with the model each step mainly used in the original project. Step 3 is lit: the image model paints missing parts, new gear, and key poses for fast blows. [SKILL.md](skills/spine-hero/SKILL.md) has the full loop, including the review and the orchestrator's own look, which the picture folds away.*
 
@@ -34,7 +36,7 @@ skills/spine-hero/                the skill: the only copy of the content
 plugin.json, .agents/plugins/     Codex plugin manifest and repo marketplace (point at skills/)
 .cursor-plugin/                   Cursor plugin and marketplace manifests (point at skills/)
 AGENTS.md                         a pointer to the skill for any agent working in this repo
-docs/                             the two pictures above
+docs/                             the explainer video and the two pictures above
 ```
 
 ## What you must bring
